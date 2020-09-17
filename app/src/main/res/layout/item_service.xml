@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.main.services.ServicesItemViewModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="26dp"
+        android:paddingTop="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_card_fill_white">
+
+        <ImageView
+            android:id="@+id/dashLine"
+            android:layout_width="200dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="26dp"
+            android:contentDescription="@string/app_name"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:src="@drawable/dash_line_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_place_24"
+            app:layout_constraintBottom_toBottomOf="@id/dashLine"
+            app:layout_constraintStart_toStartOf="@id/dashLine" />
+
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_place_24"
+            app:layout_constraintBottom_toBottomOf="@id/dashLine"
+            app:layout_constraintEnd_toEndOf="@id/dashLine" />
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="20dp"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/app_name"
+            android:background="@color/colorWhite"
+            android:layout_marginTop="8dp"
+            android:onClick="@{v -> viewModel.deleteItem()}"
+            android:src="@drawable/ic_delete_forever_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView2"
+            android:focusable="true" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_ausames_arraw"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/textCity1"
+            app:layout_constraintEnd_toEndOf="@id/dashLine"
+            app:layout_constraintStart_toStartOf="@id/dashLine"
+            app:layout_constraintTop_toTopOf="@id/textCity1" />
+
+        <ImageButton
+            android:id="@+id/arrow"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerInside"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:layout_marginEnd="16dp"
+            style="@style/Widget.MaterialComponents.TextView"
+            android:src="@drawable/ic_edit"
+            android:background="@color/colorWhite"
+            android:onClick="@{v -> viewModel.onClick()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView2"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/textCity1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@{viewModel.cityFrom}"
+            android:textColor="@color/colorRed"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/textCity2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.cityTo}"
+            android:textColor="@color/colorRed"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/textCity1"
+            app:layout_constraintEnd_toEndOf="@id/img3"
+            app:layout_constraintTop_toTopOf="@id/textCity1" />
+
+        <TextView
+            android:id="@+id/textPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{viewModel.price}"
+            android:textColor="@color/ef_grey"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/textCity2"
+            app:layout_constraintStart_toEndOf="@+id/textCity1"
+            app:layout_constraintTop_toBottomOf="@id/imageView3" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="4dp"
+            android:background="@color/ef_grey"
+            app:layout_constraintEnd_toEndOf="@id/arrow"
+            app:layout_constraintStart_toStartOf="@id/delete"
+            app:layout_constraintTop_toBottomOf="@id/textPrice" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="1dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            android:background="@color/ef_grey"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/textWeight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/view"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="@id/view2"
+            android:paddingTop="8dp"
+            android:drawablePadding="10dp"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            android:layout_marginBottom="6dp"
+            android:drawableTop="@drawable/ic_weight"
+            android:text="@string/maximum_load_weight"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/weight_et"
+            android:layout_width="122dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/lang_rectangular_select_shape"
+            android:gravity="center"
+            android:hint="500"
+            android:text="@{viewModel.maximumWeight}"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="15sp"
+            android:layout_marginBottom="14dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/textWeight"
+            app:layout_constraintStart_toStartOf="@id/textWeight"
+            app:layout_constraintBottom_toBottomOf="@id/view2" />
+
+        <TextView
+            android:id="@+id/textPriceMax"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/view2"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            android:paddingTop="8dp"
+            android:drawablePadding="16dp"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:drawableTop="@drawable/ic_price"
+            android:text="@string/price_per_kilometer"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/view2" />
+
+        <TextView
+            android:id="@+id/textFinalPrice"
+            android:layout_width="122dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/lang_rectangular_select_shape"
+            android:gravity="center"
+            android:hint="300"
+            android:inputType="number"
+            android:text="@{viewModel.pricePerkilometer}"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="15sp"
+            android:layout_marginBottom="14dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/textPriceMax"
+            app:layout_constraintStart_toStartOf="@id/textPriceMax"
+            app:layout_constraintBottom_toBottomOf="@id/view2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.main.profile.MyProfileViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.main.profile.MyProfileFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_card_fill_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="20dp">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/image"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:scaleType="centerCrop"
+                        app:loadImage="@{viewModel.userImage}"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.29"
+                        app:placeholderImage="@drawable/ic_user_avatar"
+                        app:placeholderImageScaleType="fitCenter"
+                        app:roundAsCircle="true"/>
+
+                    <ImageButton
+                        android:id="@+id/arrow"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        android:onClick="@{v -> viewModel.onClickEditProfile()}"
+                        android:background="@color/colorWhite"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_edit"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/textField"
+                        text="@{viewModel.name}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:hint="@string/Name"
+                        android:textAlignment="textStart"
+                        android:paddingBottom="8dp"
+                        app:fv_background="@drawable/red_text_view"
+                        app:fv_icon="@drawable/ic_name_circle_24"
+                        app:fv_icon_color="@color/colorRed"
+                        app:fv_txt_label="@string/Name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/image"
+                        app:startIconDrawable="@drawable/ic_name_circle_24">
+
+                    </com.foodella.driver.features.orderDetails.FieldView>
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/textEmail"
+                        text="@{viewModel.dataOFBirth}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="8dp"
+                        android:textColorHint="@color/colorGrey"
+                        app:fv_background="@drawable/red_text_view"
+                        app:fv_icon="@drawable/ic_date_range_24"
+                        app:fv_icon_color="@color/colorRed"
+                        app:fv_txt_label="@string/birth_date"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textField">
+
+                    </com.foodella.driver.features.orderDetails.FieldView>
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/textPhone"
+                        text="@{viewModel.email}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="8dp"
+                        android:textColorHint="@color/colorGrey"
+                        app:fv_background="@drawable/red_text_view"
+                        app:fv_icon="@drawable/ic_email_24"
+                        app:fv_icon_color="@color/colorRed"
+                        app:fv_txt_label="@string/Email"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textEmail">
+
+                    </com.foodella.driver.features.orderDetails.FieldView>
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/textNationality"
+                        text="@{viewModel.nationality}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="8dp"
+                        android:textColorHint="@color/colorGrey"
+                        app:fv_background="@drawable/red_text_view"
+                        app:fv_icon="@drawable/ic_flag_24"
+                        app:fv_icon_color="@color/colorRed"
+                        app:fv_txt_label="@string/Nationality"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textPhone">
+
+
+                    </com.foodella.driver.features.orderDetails.FieldView>
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/textCity"
+                        text="@{viewModel.city}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="8dp"
+                        android:textColorHint="@color/colorGrey"
+                        app:fv_background="@drawable/red_text_view"
+                        app:fv_icon="@drawable/ic_city"
+                        app:fv_icon_color="@color/colorRed"
+                        app:fv_txt_label="@string/City"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textNationality" />
+
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/textJob"
+                        text="@{viewModel.job}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="8dp"
+                        android:textColorHint="@color/colorGrey"
+                        app:fv_background="@drawable/red_text_view"
+                        app:fv_icon="@drawable/ic_work_24"
+                        app:fv_icon_color="@color/colorRed"
+                        app:fv_txt_label="@string/job"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textCity" />
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/textNational"
+                        text="@{viewModel.namberOfNational}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="8dp"
+                        android:textColorHint="@color/colorGrey"
+                        app:fv_background="@drawable/red_text_view"
+                        app:fv_icon="@drawable/ic_country"
+                        app:fv_icon_color="@color/colorRed"
+                        app:fv_txt_label="@string/CountryNumber"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textJob" />
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/imge1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        app:roundedCornerRadius="10dp"
+                        app:roundBottomRight="false"
+                        app:roundBottomLeft="false"
+                        tools:background="@drawable/shape_imge_view"
+                        android:contentDescription="@string/app_name"
+                        app:loadImage="@{viewModel.idcardImge}"
+                        app:layout_constraintDimensionRatio="1:.43"
+                        app:layout_constraintEnd_toEndOf="@id/textNationality"
+                        app:layout_constraintStart_toStartOf="@id/textNationality"
+                        app:layout_constraintTop_toBottomOf="@id/textNational" />
+
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/imge22"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/imge_shape_lisance"
+                        android:src="@drawable/image"
+                        app:roundedCornerRadius="10dp"
+                        app:roundBottomRight="false"
+                        app:roundBottomLeft="false"
+                        tools:background="@drawable/shape_imge_view"
+                        android:contentDescription="@string/app_name"
+                        app:loadImage="@{viewModel.drivercardImge}"
+                        app:layout_constraintDimensionRatio="1:.43"
+                        app:layout_constraintEnd_toEndOf="@id/imge1"
+                        app:layout_constraintStart_toStartOf="@id/imge1"
+                        app:layout_constraintTop_toBottomOf="@id/txt11" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txt11"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_text_view"
+                        android:paddingTop="10dp"
+                        android:text="صورة البطاقة الشخصية"
+                        android:textAlignment="center"
+                        android:textSize="13sp"
+                        app:layout_constraintDimensionRatio="1:.13"
+                        app:layout_constraintEnd_toEndOf="@id/imge1"
+                        app:layout_constraintStart_toStartOf="@id/imge1"
+                        app:layout_constraintTop_toBottomOf="@id/imge1" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_text_view"
+                        android:paddingTop="12dp"
+                        android:text="@string/personal_image"
+                        android:textAlignment="center"
+                        android:textSize="13sp"
+                        app:layout_constraintDimensionRatio="1:.13"
+                        app:layout_constraintEnd_toEndOf="@id/imge1"
+                        app:layout_constraintStart_toStartOf="@id/imge1"
+                        app:layout_constraintTop_toBottomOf="@id/imge1" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txt22"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_text_view"
+                        android:paddingTop="12dp"
+                        android:text="@string/driver_licenses"
+                        android:textAlignment="center"
+                        android:textSize="13sp"
+                        app:layout_constraintDimensionRatio="1:.13"
+                        app:layout_constraintEnd_toEndOf="@id/imge22"
+                        app:layout_constraintStart_toStartOf="@id/imge22"
+                        app:layout_constraintTop_toBottomOf="@id/imge22" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:drawableStart="@drawable/ic_empty_lisance"
+                        android:drawablePadding="6dp"
+                        android:text="@string/the_license_was_not_uploaded"
+                        android:textColor="@color/colorRed"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="@id/imge22"
+                        app:layout_constraintTop_toTopOf="@id/imge22" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.addService.AddServiceViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.addService.AddServiceActivity">
+
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:viewModel="@{viewModel}" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constrain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_card_fill_white"
+                android:paddingBottom="24dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fieldViewTimeOfReceipt"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/confirm_rectangular_shape"
+                    android:gravity="center_vertical"
+                    android:hint="@string/from_city"
+                    tools:ignore="RtlCompat"
+                    android:textColorHint="@color/colorBlack54"
+                    android:onClick="@{v -> viewModel.onClickCityFFrom()}"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textAlignment="viewStart"
+                    android:paddingBottom="6dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:drawableEndCompat="@drawable/ic_expand_more_24"
+                    app:drawableTint="@color/colorDarkGray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/constrain"
+                    app:text="@{viewModel.cityFrom}" />
+
+                <TextView
+                    android:id="@+id/textViewCityError"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/enter_the_city"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:visibility="@{viewModel.viableErrorTextCity}"
+                    app:layout_constraintEnd_toEndOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintStart_toStartOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintTop_toBottomOf="@+id/fieldViewTimeOfReceipt"
+                    tools:text="@string/forget_password" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="14sp"
+                    android:background="@drawable/ic_expand_more_24"
+                    android:visibility="gone"
+                    app:drawableTint="@color/colorDarkGray"
+                    app:layout_constraintBottom_toBottomOf="@+id/fieldViewTimeOfReceipt"
+                    app:layout_constraintEnd_toEndOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintTop_toTopOf="@+id/fieldViewTimeOfReceipt" />
+
+                <TextView
+                    android:id="@+id/vehicle_model_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/confirm_rectangular_shape"
+                    android:drawablePadding="20dp"
+                    android:gravity="start|center_vertical"
+                    android:hint="@string/to_city"
+                    android:onClick="@{v -> viewModel.onClickCityTo()}"
+                    android:padding="9dp"
+                    android:paddingStart="14dp"
+                    android:textAlignment="viewStart"
+                    android:paddingEnd="14dp"
+                    android:text="@{viewModel.cityTo}"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorBlack54"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:drawableEndCompat="@drawable/ic_expand_more_24"
+                    app:drawableTint="@color/colorDarkGray"
+                    app:layout_constraintEnd_toEndOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintStart_toStartOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCityError"
+                    tools:targetApi="m" />
+
+                <TextView
+                    android:id="@+id/textViewCity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/enter_the_citys"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:visibility="@{viewModel.viableErrorTextCityRecive}"
+                    app:layout_constraintEnd_toEndOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintStart_toStartOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintTop_toBottomOf="@+id/vehicle_model_tv"
+                    tools:text="@string/forget_password" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/wight"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:hint="@string/allowable_weight"
+                    android:textColor="@color/colorRed"
+                    android:textSize="16sp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxStrokeColor="@color/color_input"
+                    app:boxStrokeWidth="1dp"
+                    app:errorEnabled="true"
+                    android:textColorHint="@color/colorBlack54"
+                    app:errorText="@{viewModel.weightError}"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintStart_toStartOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCity">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="@={viewModel.weight}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:textChange="@{viewModel.weightTextChange}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textNationality"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:hint="@string/price"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxStrokeColor="@color/colorRed"
+                    app:boxStrokeWidth="1dp"
+                    app:errorEnabled="true"
+                    app:errorText="@{viewModel.priceError}"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="true"
+                    android:textColorHint="@color/colorBlack54"
+                    app:layout_constraintEnd_toEndOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintStart_toStartOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintTop_toBottomOf="@id/wight">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="@={viewModel.price}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:textChange="@{viewModel.priceTextChange}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textweightincreas"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:hint="@string/overweight"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxStrokeColor="@color/colorRed"
+                    android:textColorHint="@color/colorBlack54"
+                    app:boxStrokeWidth="1dp"
+                    app:errorEnabled="true"
+                    app:errorText="@{viewModel.overWeightError}"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintStart_toStartOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintTop_toBottomOf="@id/textNationality">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="@={viewModel.overWeight}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:textChange="@{viewModel.overWeightTextChange}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textweightincreasPrice"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxStrokeColor="@color/colorRed"
+                    app:boxStrokeWidth="1dp"
+                    app:errorEnabled="true"
+                    android:textColorHint="@color/colorBlack54"
+                    app:errorText="@{viewModel.priceError}"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintStart_toStartOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintTop_toBottomOf="@id/textweightincreas">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/excess_weight_price"
+                        android:inputType="number"
+                        android:text="@={viewModel.priceWight}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:textChange="@{viewModel.priceWeightTextChange}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/add_car_next_btn"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:gravity="center"
+                    android:onClick="@{v -> viewModel.onClickButtonAddService()}"
+                    android:text="@{viewModel.textByttom}"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintCircleRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintStart_toStartOf="@id/fieldViewTimeOfReceipt"
+                    app:layout_constraintTop_toBottomOf="@+id/textweightincreasPrice" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

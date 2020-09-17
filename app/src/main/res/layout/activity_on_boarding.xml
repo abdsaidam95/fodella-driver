@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.onBoarding.OnBoardingViewModels" />
+
+        <variable
+            name="fragmentManager"
+            type="androidx.fragment.app.FragmentManager" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.onBoarding.OnBoardingActivity">
+
+        <TextView
+            android:id="@+id/textViewSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{v -> viewModel.onClickSkip()}"
+            android:padding="16dp"
+            android:text="@string/skip"
+            android:textColor="@color/colorPrimary"
+            android:textSize="17sp"
+            app:actionText="@{viewModel.currentPage}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:currentPage="@{viewModel.currentPage}"
+            app:fragmentManager="@{fragmentManager}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:viewPageListener="@{viewModel.onPageChangeListener}"
+            app:viewPagerList="@{viewModel.onBoardingArrayList}" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@id/materialButton"
+            app:layout_constraintEnd_toEndOf="@+id/materialButton"
+            app:layout_constraintStart_toStartOf="@+id/materialButton"
+            app:setTab="@{viewPager}"
+            app:tabBackground="@drawable/dot_selector"
+            app:tabIndicatorHeight="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="48dp"
+            android:backgroundTint="@color/colorRed"
+            android:onClick="@{v -> viewModel.onClickButton()}"
+            android:text="@{viewModel.textButton}"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/next" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

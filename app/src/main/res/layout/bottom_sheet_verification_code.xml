@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.bottomSheets.verificationCodeBottomSheet.VerificationCodeViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_sheet_shape"
+            app:bottomSheetState="@{viewModel.bottomSheetState}"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <ImageButton
+                android:id="@+id/bottom_sheet_back_arrow"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{v -> viewModel.onClickBackArrow()}"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_arrow_back_24"
+                android:tint="@color/colorRed"
+                app:layout_constraintBottom_toBottomOf="@+id/confirm_timer_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/confirm_timer_tv" />
+
+            <TextView
+                android:id="@+id/confirm_timer_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="@string/forgot_password"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/confirm_timer_no_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="3dp"
+                android:text="@{viewModel.timer}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_timer_tv"
+                tools:text="00:40" />
+
+            <TextView
+                android:id="@+id/confirm_please_enter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/please_enter_the_activation_code_sent_to_the_mobile_number"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_timer_no_tv" />
+
+
+            <com.chaos.view.PinView
+                android:id="@+id/pinView"
+                style="@style/PinWidget.PinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:cursorVisible="true"
+                android:gravity="center"
+                android:inputType="number"
+                android:layoutDirection="ltr"
+                android:padding="16dp"
+                android:state_selected="true"
+                android:text="@={viewModel.code}"
+                android:textColor="@color/colorRed"
+                android:textIsSelectable="false"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cursorColor="@color/colorRed"
+                app:cursorWidth="1dp"
+                app:hideLineWhenFilled="false"
+                app:itemCount="4"
+                app:itemHeight="56dp"
+                app:itemRadius="4dp"
+                app:itemSpacing="30dp"
+                app:itemWidth="56dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_please_enter"
+                app:lineColor="@color/pin_view_selector"
+                app:pinViewTextChange="@{viewModel.codeTextChange}"
+                app:viewType="rectangle" />
+
+            <TextView
+                android:id="@+id/textViewMobileError"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:paddingStart="16dp"
+                android:text="@{viewModel.codeError}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:visibility="@{viewModel.codeError != 0 ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pinView"
+                tools:ignore="RtlSymmetry"
+                tools:text="@string/forget_password" />
+
+            <Button
+                android:id="@+id/confirm_ok_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:onClick="@{v -> viewModel.onClickOk()}"
+                android:text="@string/ok"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintCircleRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pinView" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/confirm_resent_tv"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:onClick="@{v -> viewModel.onClickResend()}"
+                android:text="@string/resend"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_ok_btn" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_resent_tv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

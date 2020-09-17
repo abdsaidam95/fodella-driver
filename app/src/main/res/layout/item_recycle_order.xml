@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.main.orders.adapter.OrderItemViewModel" />
+
+        <variable
+            name="viewModels"
+            type="com.foodella.driver.features.main.orders.OrdersViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_card_fill_white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Noevaluation"
+            android:textColor="@color/ef_grey"
+            android:textSize="14sp"
+            android:visibility="@{viewModel.textNotEvaluation}"
+            app:layout_constraintBottom_toBottomOf="@+id/rating"
+            app:layout_constraintEnd_toEndOf="@+id/rating"
+            app:layout_constraintStart_toStartOf="@+id/rating"
+            app:layout_constraintTop_toTopOf="@+id/rating" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/rating"
+            VisabilityRatingBar="@{viewModel.visbilityratingBar}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX=".7"
+            android:scaleY=".7"
+            app:layout_constraintBottom_toBottomOf="@id/but2"
+            app:layout_constraintEnd_toStartOf="@+id/but3"
+            app:layout_constraintStart_toStartOf="@id/text3"
+            app:layout_constraintTop_toTopOf="@id/but2"
+            tools:layout_editor_absoluteY="375dp" />
+
+        <com.foodella.driver.features.orderDetails.FieldView
+            android:id="@+id/cost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="12sp"
+            app:fv_icon="@drawable/ic_money"
+            app:fv_txt_label="@string/deliveryprice"
+            app:text="@{viewModel.priceOrder}"
+            app:layout_constraintEnd_toEndOf="@id/text3"
+            app:layout_constraintStart_toStartOf="@id/text3"
+            app:layout_constraintTop_toBottomOf="@id/text3"
+            app:visibility="@{viewModel.visbilityPriceText}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/but1"
+            VisabilityButton="@{viewModel.visbilityTab3}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{v -> viewModel.onClickAccept()}"
+            android:padding="6dp"
+            android:text="@{viewModel.textButtonAccept}"
+            android:textAllCaps="false"
+            android:textColor="@color/ef_white"
+            android:textSize="12sp"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@id/but2"
+            app:layout_constraintStart_toStartOf="@id/text3"
+            app:layout_constraintTop_toBottomOf="@+id/cost" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/but2"
+            VisabilityButton="@{viewModel.visbilityTab3}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:onClick="@{v -> viewModel.onClickReject()}"
+            android:padding="6dp"
+            android:text="@{viewModel.textButtonReject}"
+            android:textAllCaps="false"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="12sp"
+            app:backgroundTint="@color/colorGrayLite"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/but1"
+            app:layout_constraintEnd_toStartOf="@id/but3"
+            app:layout_constraintStart_toEndOf="@id/but1"
+            app:layout_constraintTop_toTopOf="@id/but1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/but3"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="10dp"
+            android:onClick="@{v -> viewModel.onClickDetails()}"
+            android:text="@string/details"
+            android:textAllCaps="false"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="12sp"
+            app:backgroundTint="@color/colorWhite"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/but1"
+            app:layout_constraintEnd_toStartOf="@id/butMore"
+            app:layout_constraintStart_toEndOf="@id/but2"
+            app:layout_constraintTop_toTopOf="@id/but1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/butMore"
+            ClickButton="@{viewModel.clickListener}"
+            VisabilityButton="@{viewModel.visbility}"
+            showPopup="@{viewModel.isShowPopUp}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:width="0dp"
+            android:onClick="@{v -> viewModel.onClickMore()}"
+            android:text="@string/more"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            app:backgroundTint="@color/colorBlue"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/but3"
+            app:layout_constraintEnd_toEndOf="@id/text3"
+            app:layout_constraintStart_toEndOf="@id/but3"
+            app:layout_constraintTop_toTopOf="@id/but1" />
+
+        <com.foodella.driver.features.orderDetails.FieldView
+            android:id="@+id/textCity"
+            style="@style/Widget.MaterialComponents.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            app:fv_icon="@drawable/ic_date_range"
+            app:fv_txt_label="@string/orderhistory"
+            app:text="@{viewModel.dateOrderLiveData}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.foodella.driver.features.orderDetails.FieldView
+            android:id="@+id/text1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/timeofreceipt"
+            android:textColorHint="@color/colorGrey"
+            android:textSize="12sp"
+            app:fv_icon="@drawable/ic_store_time"
+            app:fv_txt_label="@string/timeofreceipt"
+            app:text="@{viewModel.dateReciveLiveData}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textCity" />
+
+        <com.foodella.driver.features.orderDetails.FieldView
+            android:id="@+id/text2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            android:textSize="12sp"
+            app:fv_icon="@drawable/ic_timer"
+            app:fv_txt_label="@string/deliverytime"
+            app:text="@{viewModel.delivaryTimeLiveData}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text1" />
+
+        <com.foodella.driver.features.orderDetails.FieldView
+            android:id="@+id/text3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            android:textSize="12sp"
+            app:fv_icon="@drawable/ic_shopping"
+            app:fv_txt_label="@string/ordertype"
+            app:text="@{viewModel.typeOrderLiveData}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

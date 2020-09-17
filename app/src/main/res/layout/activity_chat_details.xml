@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.chatDetails.ConversationsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.chatDetails.ConversationActivity">
+
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/toolbar"
+            app:viewModel="@{viewModel}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <View
+                android:id="@+id/viewBg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_card_fill_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/new_message"
+                app:layout_constraintEnd_toEndOf="@+id/viewBg"
+                app:layout_constraintStart_toStartOf="@+id/viewBg"
+                app:layout_constraintTop_toTopOf="@+id/viewBg"
+                app:onRefreshListener="@{viewModel.mOnRefreshListener}"
+                app:setRefreshing="@{viewModel.isRefreshing}">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/chatsRv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:conversationAdapter="@{viewModel.conversationsAdapter}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:marginDecoration="@{16}"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_chat_left" />
+
+                    <include
+                        layout="@layout/view_empty_status"
+                        app:viewModel="@{viewModel}" />
+
+                </FrameLayout>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/colorGrey"
+                app:layout_constraintBottom_toTopOf="@+id/new_message"
+                app:layout_constraintEnd_toEndOf="@+id/viewBg"
+                app:layout_constraintStart_toStartOf="@+id/viewBg" />
+
+            <EditText
+                android:id="@+id/new_message"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@android:color/transparent"
+                android:gravity="start|center_vertical"
+                android:hint="@string/message"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:lines="1"
+                android:padding="8dp"
+                android:text="@={viewModel.message}"
+                android:textAlignment="viewStart"
+                android:textColorHint="@color/colorBlack54"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/viewBg"
+                app:layout_constraintEnd_toEndOf="@+id/viewBg"
+                app:layout_constraintStart_toEndOf="@+id/send_new_message" />
+
+            <TextView
+                android:id="@+id/send_new_message"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_round_red_8"
+                android:gravity="center"
+                android:onClick="@{v -> viewModel.onClickSendMessage()}"
+                android:paddingHorizontal="16dp"
+                android:text="@string/send"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/viewBg"
+                app:layout_constraintStart_toStartOf="@+id/viewBg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.profile.documents.AddDataViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:background="@android:color/white"
+            tools:context=".features.profile.documents.AddDataFragment">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/materialTextView1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColorHint="@color/colorGrayLite"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxStrokeColor="@color/colorRed"
+                app:boxStrokeWidth="1dp"
+                app:errorEnabled="true"
+                app:errorText="@{viewModel.nationalError}"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/ic_country">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/CountryNumber"
+                    android:text="@={viewModel.national}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorRed"
+                    android:singleLine="true"
+                    android:textColorHint="@color/colorBlack54"
+                    android:textSize="14sp"
+                    app:textChange="@{viewModel.nationalTextChange}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/imge1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                app:roundedCornerRadius="10dp"
+                app:roundBottomRight="false"
+                app:roundBottomLeft="false"
+                tools:background="@drawable/shape_imge_view"
+                android:contentDescription="@string/app_name"
+                app:loadImage="@{viewModel.idcardImge}"
+                app:layout_constraintDimensionRatio="1:.50"
+                app:layout_constraintEnd_toEndOf="@id/materialTextView1"
+                app:layout_constraintStart_toStartOf="@id/materialTextView1"
+                app:layout_constraintTop_toBottomOf="@id/materialTextView1" />
+
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/imge22"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintDimensionRatio="1:.50"
+                app:roundedCornerRadius="10dp"
+                app:loadImage="@{viewModel.drivercardImge}"
+                app:roundBottomRight="false"
+                app:roundBottomLeft="false"
+                tools:background="@drawable/shape_imge_view"
+                app:layout_constraintEnd_toEndOf="@id/materialTextView1"
+                app:layout_constraintStart_toStartOf="@id/materialTextView1"
+                app:layout_constraintTop_toBottomOf="@id/errorPersonalImage" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt11"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/shape_text_view"
+                android:text="@string/personal_image"
+                android:onClick="@{v -> viewModel.onClick()}"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="13sp"
+                app:layout_constraintDimensionRatio="1:.11"
+                app:layout_constraintEnd_toEndOf="@id/imge1"
+                app:layout_constraintStart_toStartOf="@id/imge1"
+                app:layout_constraintTop_toBottomOf="@id/imge1" />
+            <TextView
+                android:id="@+id/errorPersonalImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/txt11"
+                app:layout_constraintTop_toBottomOf="@+id/txt11"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:visibility="@{viewModel.viableErrorPersonalImage}"
+                android:text="@string/please_choose_personal_image"
+                android:textColor="@color/colorRed"/>
+
+
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt22"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/shape_text_view"
+                android:onClick="@{v -> viewModel.onClickPersonalDraive()}"
+                android:text="@string/driver_licenses"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="14sp"
+                app:layout_constraintDimensionRatio="1:.11"
+                app:layout_constraintEnd_toEndOf="@id/imge22"
+                app:layout_constraintStart_toStartOf="@id/imge22"
+                app:layout_constraintTop_toBottomOf="@id/imge22" />
+            <TextView
+                android:id="@+id/errorDriverImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/txt11"
+                app:layout_constraintTop_toBottomOf="@+id/txt22"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:visibility="@{viewModel.viableErrorDriverImage}"
+                android:text="@string/please_choose_driver_image"
+                android:textColor="@color/colorRed"/>
+
+            <androidx.legacy.widget.Space
+                android:id="@+id/space"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toEndOf="@id/imge1"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/imge1"
+                app:layout_constraintTop_toBottomOf="@id/txt22" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                android:onClick="@{v -> viewModel.onClickButton()}"
+                android:text="@string/next"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/space"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>

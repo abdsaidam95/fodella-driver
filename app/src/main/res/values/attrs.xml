@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FieldView">
+        <attr name="fv_txt_label" format="string" />
+        <attr name="fv_txt_value" format="string" />
+        <attr name="fv_icon" format="reference" />
+        <attr name="fv_icon_color" format="color" />
+        <attr name="fv_background" format="reference|color" />
+        <attr name="fv_text_color" format="color" />
+        <attr name="fv_text_style" format="reference|integer"/>
+    </declare-styleable>
+
+</resources>

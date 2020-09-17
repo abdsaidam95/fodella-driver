@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="txtStringValue"
+            type="String" />
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.orderDetails.fragments.orderDataFragment.OrderDataViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.orderDetails.fragments.orderDataFragment.OrderDataFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="12dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/fieldViewDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:label="@{viewModel.dateLabel}"
+                        app:text="@{viewModel.date}"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:fv_txt_label="@string/order_date"
+                        app:fv_icon_color="@android:color/white"
+                        tools:fv_txt_value="15.08.2020" />
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/fieldViewTimeOfReceipt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        app:fv_icon_color="@android:color/white"
+                        app:label="@{viewModel.timeLabel}"
+                        app:text="@{viewModel.time}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fieldViewDate"
+                        app:fv_txt_label="@string/receipt_time"
+                        tools:fv_txt_value="10:15 - 10:20 صباحاً" />
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/fieldViewDeliveryTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        app:label="@{viewModel.deliveryTimeLabel}"
+                        app:text="@{viewModel.deliveryTime}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fieldViewTimeOfReceipt"
+                        app:fv_txt_label="@string/delivery_time"
+                        tools:fv_txt_value="10:15 - 10:20 صباحاً" />
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/fieldViewOrderType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        app:label="@{viewModel.orderTypeLabel}"
+                        app:text="@{viewModel.orderType}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fieldViewDeliveryTime"
+                        app:fv_txt_label="@string/order_type"
+                        tools:fv_txt_value="نموذج نص" />
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/fieldViewPackagingType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        app:label="@{viewModel.packagingTypeLabel}"
+                        app:text="@{viewModel.packagingType}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fieldViewOrderType"
+                        app:fv_txt_label="@string/packaging_type"
+                        tools:fv_txt_value="نموذج نص" />
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/fieldViewOrderWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        app:label="@{viewModel.orderWeightLabel}"
+                        app:text="@{viewModel.orderWeight}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fieldViewPackagingType"
+                        app:fv_txt_label="@string/order_weight"
+                        tools:fv_txt_value="نموذج نص" />
+
+
+                    <com.foodella.driver.features.orderDetails.FieldView
+                        android:id="@+id/fieldViewOrderDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        app:label="@{viewModel.oderDescriptionLabel}"
+                        app:text="@{viewModel.oderDescription}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fieldViewOrderWeight"
+                        app:fv_txt_label="@string/order_description"
+                        tools:fv_txt_value="نموذج نص نموذج نص نموذج نص نموذج نص نموذج نص نموذج نص نموذج نص نموذج نص نموذج نص نص" />
+
+                    <Button
+                        android:id="@+id/acceptBtn"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="14dp"
+                        android:layout_marginStart="14dp"
+                        android:gravity="center"
+                        android:onClick="@{v -> viewModel.onClickAccept()}"
+                        android:text="@string/accept"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintCircleRadius="20dp"
+                        app:layout_constraintEnd_toStartOf="@+id/rejectBtn"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fieldViewOrderDescription" />
+
+                    <Button
+                        android:id="@+id/rejectBtn"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="14dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="14dp"
+                        android:backgroundTint="@color/colorMediumGray"
+                        android:gravity="center"
+                        android:onClick="@{v -> viewModel.onClickReject()}"
+                        android:text="@string/reject"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintCircleRadius="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/acceptBtn"
+                        app:layout_constraintTop_toBottomOf="@+id/fieldViewOrderDescription" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="-14dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

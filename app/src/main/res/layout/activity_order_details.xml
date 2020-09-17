@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.orderDetails.OrderDetailsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.orderDetails.OrderDetailsActivity">
+
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/toolbar"
+            app:viewModel="@{viewModel}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="12dp"
+                app:cornerRadius="16dp"
+                app:checkedButton="@id/order_data_btn"
+                app:checkedClick="@{viewModel.checkedButton}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appBar"
+                app:onToggleButtonClick="@{viewModel.mListener}"
+                app:singleSelection="true"
+                tools:ignore="NotSibling">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/order_data_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorWhite"
+                    android:checked="@={viewModel.isOrderDataClicked}"
+                    android:gravity="center"
+                    android:text="@string/order_data"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDarkGray" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/address_and_contact_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorWhite"
+                    android:checked="@={viewModel.isAddressClicked}"
+                    android:gravity="center"
+                    android:text="@string/address_and_contact"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDarkGray" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/financial_data_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorWhite"
+                    android:checked="@={viewModel.isFinancialDataClicked}"
+                    android:gravity="center"
+                    android:text="@string/financial_data"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDarkGray" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/rating_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorWhite"
+                    android:checked="@={viewModel.isRatingClicked}"
+                    android:gravity="center"
+                    android:text="@string/rating"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDarkGray" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toggleButton">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/main_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.core.widget.NestedScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

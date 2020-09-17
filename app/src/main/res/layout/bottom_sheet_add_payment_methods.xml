@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.bottomSheets.addPaymentMethods.AddPaymentMethodsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_sheet_shape"
+            app:bottomSheetState="@{viewModel.bottomSheetState}"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            tools:context=".bottomSheets.addPaymentMethods.AddPaymentMethodsBottomSheet">
+
+            <ImageButton
+                android:id="@+id/bottom_sheet_close_arrow"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{v -> viewModel.onClickClose()}"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close"
+                android:tint="@color/colorDarkGray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/addPaymentTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="start|center_vertical"
+                android:text="@string/add_payment_method"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addPaymentNameTv"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/name"
+                android:textColorHint="@color/colorBlack54"
+                app:boxStrokeErrorColor="@color/colorRed"
+                app:boxStrokeWidth="1dp"
+                app:errorIconTint="@color/colorRed"
+                app:errorText="@{viewModel.paymentNameError}"
+                app:errorTextColor="@color/colorRed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addPaymentTv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:nextFocusDown="@+id/addPaymentNoTv"
+                    android:text="@={viewModel.paymentName}"
+                    android:textAlignment="viewStart"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addPaymentNoTv"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/card_number"
+                android:textColorHint="@color/colorBlack54"
+                app:boxStrokeErrorColor="@color/colorRed"
+                app:boxStrokeWidth="1dp"
+                app:errorIconTint="@color/colorRed"
+                app:errorText="@{viewModel.paymentCardNoError}"
+                app:errorTextColor="@color/colorRed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addPaymentNameTv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:nextFocusDown="@+id/addPaymentDateTv"
+                    android:text="@={viewModel.cardNo}"
+                    android:textAlignment="viewStart"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addPaymentDateTv"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/expiration_date"
+                android:textColorHint="@color/colorBlack54"
+                app:boxStrokeErrorColor="@color/colorRed"
+                app:boxStrokeWidth="1dp"
+                app:errorIconTint="@color/colorRed"
+                app:errorText="@{viewModel.paymentExpirationDateError}"
+                app:errorTextColor="@color/colorRed"
+                app:layout_constraintEnd_toStartOf="@+id/addPaymentCodeTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addPaymentNoTv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:nextFocusRight="@id/addPaymentCodeTv"
+                    android:text="@={viewModel.expirationDate}"
+                    android:textAlignment="viewStart"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addPaymentCodeTv"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:hint="@string/security_code"
+                android:textColorHint="@color/colorBlack54"
+                app:boxStrokeErrorColor="@color/colorRed"
+                app:boxStrokeWidth="1dp"
+                app:errorIconTint="@color/colorRed"
+                app:errorText="@{viewModel.paymentSecurityCodeError}"
+                app:errorTextColor="@color/colorRed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/addPaymentDateTv"
+                app:layout_constraintTop_toBottomOf="@+id/addPaymentNoTv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:nextFocusDown="@+id/NameOfCardHolderTv"
+                    android:text="@={viewModel.securityCode}"
+                    android:textAlignment="viewStart"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/NameOfCardHolderTv"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/name_card_holder"
+                android:textColorHint="@color/colorBlack54"
+                app:boxStrokeErrorColor="@color/colorRed"
+                app:boxStrokeWidth="1dp"
+                app:errorIconTint="@color/colorRed"
+                app:errorText="@{viewModel.paymentCardNoError}"
+                app:errorTextColor="@color/colorRed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addPaymentCodeTv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="@={viewModel.holderName}"
+                    android:textAlignment="viewStart"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addBtn"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:onClick="@{v -> viewModel.onClickAdd()}"
+                android:text="@string/add"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintCircleRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/NameOfCardHolderTv" />
+
+            <Space
+                android:id="@+id/space"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addBtn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

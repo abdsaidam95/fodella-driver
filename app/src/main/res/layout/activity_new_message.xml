@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.newMessage.NewMessageViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.newMessage.NewMessageActivity">
+
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:viewModel="@{viewModel}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".features.newMessage.NewMessageActivity">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/messageTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="10dp">
+                    <EditText
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autofillHints="@string/app_name"
+                        android:background="@null"
+                        android:hint="@string/subject_title"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="@={viewModel.messageTitle}"
+                        android:textColorHint="@color/colorBlack54"
+                        android:textColor="@color/colorDarkGray"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+                    <TextView
+                        android:id="@+id/errorTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:visibility="@{viewModel.visabilityErrorTitle}"
+                        app:layout_constraintStart_toStartOf="@+id/title"
+                        app:layout_constraintTop_toBottomOf="@+id/title"
+                       app:layout_constraintBottom_toTopOf="@+id/space"
+                        android:text="@string/please_enter_the_message_title"
+                        android:textColor="@color/colorRed"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/messageTitle">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <EditText
+                        android:id="@+id/newMessageDetailsBody"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:autofillHints="no"
+                        app:layout_constraintDimensionRatio="1:1"
+                        android:background="@android:color/transparent"
+                        android:gravity="top|start"
+                        android:textColorHint="@color/colorBlack54"
+                        android:hint="@string/enter_your_message"
+                        android:inputType="textMultiLine"
+                        android:text="@={viewModel.messageBody}"
+                        android:minLines="5"
+                        android:padding="4dp"
+                        android:singleLine="false"
+                        android:textColor="@color/colorDarkGray"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="LabelFor" />
+                    <TextView
+                        android:id="@+id/errorMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:visibility="@{viewModel.visabilityErrorMessage}"
+                        app:layout_constraintStart_toStartOf="@+id/newMessageDetailsBody"
+                        app:layout_constraintTop_toBottomOf="@+id/newMessageDetailsBody"
+                        android:text="@string/please_enter_the_message_title"
+                        android:textColor="@color/colorRed"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/sendBtn"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center"
+                        android:onClick="@{v -> viewModel.onClickSendMessage()}"
+                        android:text="@string/send"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintCircleRadius="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

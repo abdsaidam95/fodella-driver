@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.addCar.fragments.CarLicenseViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".features.addCar.fragments.CarLicenseFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/vehicle_license_upload_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/confirm_rectangular_shape"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/vehicle_license_img"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:contentDescription="@string/app_name"
+                        app:layout_constraintDimensionRatio="1:0.4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:loadImage="@{viewModel.vehicleLicenseImage}" />
+
+                    <ImageButton
+                        android:id="@+id/close_img"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/circle_bg"
+                        android:contentDescription="@string/app_name"
+                        android:onClick="@{v -> viewModel.onClickClose()}"
+                        android:scaleType="fitXY"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_close"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/car_text_view_shape"
+                        android:onClick="@{v -> viewModel.onClickVehicleLicenseImage()}"
+                        android:paddingTop="12dp"
+                        android:text="@string/vehicle_license"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorDarkGray"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:.13"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/vehicle_license_img" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/errorVehicleLicenceImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/vehicle_license_upload_image"
+                    app:layout_constraintTop_toBottomOf="@+id/vehicle_license_upload_image"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    tools:text="@string/app_name"
+                    android:text="@{viewModel.vehicleLicenceImageErrorValue}"
+                    android:visibility="@{viewModel.vehicleLicenceImageErrorVisibility}"
+                    android:textColor="@color/colorRed"/>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/insurance_certificate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/confirm_rectangular_shape"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/errorVehicleLicenceImage">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/insurance_certificate_img"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:contentDescription="@string/app_name"
+                        app:layout_constraintDimensionRatio="1:0.4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:loadImage="@{viewModel.insuranceCertificateImage}" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/car_text_view_shape"
+                        android:onClick="@{v -> viewModel.onClickInsuranceImage()}"
+                        android:paddingTop="12dp"
+                        android:text="@string/click_to_download_the_insurance_certificate"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorDarkGray"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:.13"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/insurance_certificate_img" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/errorInsuranceImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/insurance_certificate"
+                    app:layout_constraintTop_toBottomOf="@+id/insurance_certificate"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    tools:text="@string/app_name"
+                    android:text="@{viewModel.insuranceImageErrorValue}"
+                    android:visibility="@{viewModel.insuranceImageErrorVisibility}"
+                    android:textColor="@color/colorRed"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/confirm_rectangular_shape"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/errorInsuranceImage">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/vehicle_img"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:contentDescription="@string/app_name"
+                        app:layout_constraintDimensionRatio="1:0.4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:loadImage="@{viewModel.vehicleImage}" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/materialTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/car_text_view_shape"
+                        android:onClick="@{v -> viewModel.onClickVehicleImage()}"
+                        android:paddingTop="12dp"
+                        android:text="@string/click_to_download_the_vehicle_image"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorDarkGray"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:.13"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/vehicle_img" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/errorVehicleImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/constraint"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    tools:text="@string/app_name"
+                    android:text="@{viewModel.vehicleImageErrorValue}"
+                    android:visibility="@{viewModel.vehicleImageErrorVisibility}"
+                    android:textColor="@color/colorRed"/>
+
+
+                <Button
+                    android:id="@+id/add_car_next_btn"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:onClick="@{v -> viewModel.onClickSave()}"
+                    android:text="@string/save"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/space"
+                    app:layout_constraintCircleRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/errorVehicleImage" />
+
+                <Space
+                    android:id="@+id/space"
+                    android:layout_width="0dp"
+                    android:layout_height="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

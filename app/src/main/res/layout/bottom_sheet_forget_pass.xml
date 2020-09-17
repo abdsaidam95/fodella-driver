@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.bottomSheets.forgetPasswordBottomSheet.ForgetPasswordViewModel" />
+
+    </data>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constaint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_sheet_shape"
+            android:paddingVertical="16dp"
+            app:bottomSheetState="@{viewModel.bottomSheetState}"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            tools:context=".bottomSheets.forgetPasswordBottomSheet.ForgetPasswordBottomSheet">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/forgot_password"
+                android:textColor="@color/colorRed"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/text1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:padding="6dp"
+                android:text="@string/txt_firget_pass"
+                android:textColor="@color/colorGrey"
+                app:layout_constraintEnd_toEndOf="@id/constraint_phone"
+                app:layout_constraintStart_toStartOf="@id/constraint_phone"
+                app:layout_constraintTop_toBottomOf="@id/text" />
+
+            <ImageButton
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{v -> viewModel.onClickDismissDialog()}"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_arrow_back_24"
+                android:tint="@color/colorRed"
+                app:layout_constraintBottom_toBottomOf="@id/text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/text" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_phone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/login_phone_shape"
+                app:layout_constraintDimensionRatio="1:0.154"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text1"
+                app:layout_constraintVertical_bias="0.5">
+
+                <TextView
+                    android:id="@+id/phone_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{v -> viewModel.onClickCountryPhone()}"
+                    android:padding="4dp"
+                    android:text=" + 966"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@drawable/ic_expand_more_24"
+                    app:layout_constraintBottom_toBottomOf="@id/flag_phone_img"
+                    app:layout_constraintStart_toEndOf="@+id/flag_phone_img"
+                    app:layout_constraintTop_toTopOf="@id/flag_phone_img" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/phone_tv"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/flag_phone_img"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="8dp"
+                    app:actualImageResource="@drawable/saudi_arabia_flag"
+                    app:actualImageScaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:roundedCornerRadius="2dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/login_phone_text_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:padding="12dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorPrimary"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/white"
+                    app:boxStrokeWidth="0dp"
+                    app:errorEnabled="true"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/phone_tv"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/login_phone_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center_vertical"
+                        android:hint="000 000 000"
+                        android:inputType="phone"
+                        android:padding="6dp"
+                        android:text="@={viewModel.phoneData}"
+                        android:textAlignment="viewStart"
+                        android:textSize="14sp"
+                        app:textChange="@{viewModel.phoneTextChange}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textViewMobileError"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                android:text="@{viewModel.phoneError}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:visibility="@{viewModel.phoneError != 0 ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_phone"
+                tools:text="error" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/colorRed"
+                android:onClick="@{v -> viewModel.makeForgetPasswordRequest()}"
+                android:text="@string/next"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintDimensionRatio="1:0.14"
+                app:layout_constraintEnd_toEndOf="@id/constraint_phone"
+                app:layout_constraintStart_toStartOf="@id/constraint_phone"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMobileError"
+                app:layout_constraintVertical_bias=".5" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

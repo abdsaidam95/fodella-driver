@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.editProfile.EditProfileViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient_red"
+        tools:context=".features.editProfile.EditProfileActivity">
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/toolbar"
+            app:viewModel="@{viewModel}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="@drawable/bg_card_fill_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="14dp">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/image"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="16dp"
+                        android:onClick="@{v -> viewModel.onClickPhotoButton()}"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.3"
+                        app:loadImage="@{viewModel.userImage}"
+                        app:placeholderImage="@drawable/ic_user_avatar"
+                        app:placeholderImageScaleType="fitCenter"
+                        app:roundAsCircle="true" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textField"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        app:boxStrokeWidth="1dp"
+                        app:errorEnabled="true"
+                        app:errorText="@{viewModel.nameError}"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/image"
+                        app:startIconDrawable="@drawable/ic_name_circle_24"
+                        app:startIconTint="@color/color_input">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/Name"
+                            android:inputType="text"
+                            android:text="@={viewModel.name}"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/colorRed"
+                            tools:text="dewdewdedw"
+
+                            android:textColorHint="@color/colorBlack54"
+                            android:textSize="14sp"
+                            app:textChange="@{viewModel.phoneTextChange}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textEmail"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColorHint="@color/colorGrey"
+                        app:boxStrokeColor="@color/colorRed"
+                        app:boxStrokeErrorColor="@color/colorRed"
+                        app:boxStrokeWidth="1dp"
+                        app:errorEnabled="true"
+                        app:errorText="@{viewModel.dateError}"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textField"
+                        app:startIconDrawable="@drawable/ic_date_range_24"
+                        app:startIconTint="@color/color_input">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/birth_date"
+                            android:inputType="date"
+                            android:text="@={viewModel.dateOfBirth}"
+                            android:textAlignment="viewStart"
+                            android:onClick="@{v -> viewModel.onShowDialogDataPicker()}"
+                            android:editable="false"
+                            android:clickable="true"
+                            android:focusable="false"
+                            android:textColor="@color/colorRed"
+                            android:textColorHint="@color/colorBlack54"
+                            android:textSize="14sp"
+                            app:textChange="@{viewModel.passwordTextChange}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textPhone"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColorHint="@color/colorGrey"
+                        app:boxStrokeColor="@color/colorRed"
+                        app:boxStrokeErrorColor="@color/colorRed"
+                        app:boxStrokeWidth="1dp"
+                        app:errorEnabled="true"
+                        app:errorText="@{viewModel.emailError}"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textEmail"
+                        app:startIconDrawable="@drawable/ic_email_24"
+                        app:startIconTint="@color/color_input">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/Email"
+                            android:inputType="textEmailAddress"
+                            android:text="@={viewModel.email}"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/colorRed"
+                            android:textColorHint="@color/colorBlack54"
+                            android:textSize="14sp"
+                            app:textChange="@{viewModel.emailTextChange}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/textViewCityError"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/enter_the_city"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:visibility="@{viewModel.viableErrorTextCity}"
+                        app:layout_constraintBottom_toTopOf="@+id/login_password_text_input"
+                        app:layout_constraintEnd_toEndOf="@id/textCity"
+                        app:layout_constraintStart_toStartOf="@id/textCity"
+                        app:layout_constraintTop_toBottomOf="@+id/textCity"
+                        tools:text="@string/forget_password" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textNationality"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColorHint="@color/colorGrey"
+                        app:boxStrokeColor="@color/colorRed"
+                        app:boxStrokeErrorColor="@color/colorRed"
+                        app:boxStrokeWidth="1dp"
+                        app:errorEnabled="true"
+                        app:errorText="@{viewModel.nationalError}"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textPhone"
+                        app:startIconDrawable="@drawable/ic_flag_24"
+                        app:startIconTint="@color/color_input">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/Nationality"
+                            android:inputType="text"
+                            android:text="@={viewModel.contryName}"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/colorRed"
+                            android:textColorHint="@color/colorBlack54"
+                            android:textSize="14sp"
+                            app:textChange="@{viewModel.nationalTextChange}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textCity"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/textview_shape"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:hint="@string/City"
+                        android:onClick="@{v -> viewModel.onClickCityDialog()}"
+                        android:paddingStart="50dp"
+                        android:paddingEnd="50dp"
+                        android:textAlignment="viewStart"
+                        android:text="@{viewModel.city}"
+                        android:textColor="@color/colorRed"
+                        android:textColorHint="@color/colorBlack54"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textNationality" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_city"
+                        app:layout_constraintBottom_toBottomOf="@id/textCity"
+                        app:layout_constraintStart_toStartOf="@id/textCity"
+                        app:layout_constraintTop_toTopOf="@id/textCity"
+                        app:tint="@color/colorBlack54" />
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textJob"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:boxStrokeColor="@color/colorRed"
+                        app:boxStrokeErrorColor="@color/colorRed"
+                        app:boxStrokeWidth="1dp"
+                        app:errorEnabled="true"
+                        app:errorText="@{viewModel.jobError}"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="@id/textField"
+                        app:layout_constraintStart_toStartOf="@id/textField"
+                        app:layout_constraintTop_toBottomOf="@id/textViewCityError"
+                        app:startIconDrawable="@drawable/ic_work_24"
+                        app:startIconTint="@color/color_input">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/job"
+                            android:inputType="text"
+                            android:text="@={viewModel.job}"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/colorRed"
+                            android:textColorHint="@color/colorBlack54"
+                            android:textSize="14sp"
+                            app:textChange="@{viewModel.jobTextChange}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/materialTextView1"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColorHint="@color/colorGrayLite"
+                        app:boxCornerRadiusTopEnd="5dp"
+                        app:boxCornerRadiusTopStart="5dp"
+                        app:boxStrokeColor="@color/colorRed"
+                        app:boxStrokeWidth="1dp"
+                        app:errorEnabled="true"
+                        app:errorText="@{viewModel.nationalError}"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintTop_toBottomOf="@id/textJob"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:startIconTint="@color/color_input"
+                        app:startIconDrawable="@drawable/ic_country">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/CountryNumber"
+                            android:text="@={viewModel.national}"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/colorRed"
+                            android:textColorHint="@color/colorBlack54"
+                            android:textSize="14sp"
+                            app:textChange="@{viewModel.nationalTextChange}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/imge1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        app:roundedCornerRadius="10dp"
+                        app:roundBottomRight="false"
+                        app:roundBottomLeft="false"
+                        tools:background="@drawable/shape_imge_view"
+                        android:contentDescription="@string/app_name"
+                        app:loadImage="@{viewModel.idcardImge}"
+                        app:layout_constraintDimensionRatio="1:.43"
+                        app:layout_constraintEnd_toEndOf="@id/materialTextView1"
+                        app:layout_constraintStart_toStartOf="@id/materialTextView1"
+                        app:layout_constraintTop_toBottomOf="@id/materialTextView1" />
+
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/imge22"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="16dp"
+                        android:contentDescription="@string/app_name"
+                        app:layout_constraintDimensionRatio="1:.43"
+                        app:roundedCornerRadius="10dp"
+                        app:loadImage="@{viewModel.drivercardImge}"
+                        app:roundBottomRight="false"
+                        app:roundBottomLeft="false"
+                        tools:background="@drawable/shape_imge_view"
+                        app:layout_constraintEnd_toEndOf="@id/materialTextView1"
+                        app:layout_constraintStart_toStartOf="@id/materialTextView1"
+                        app:layout_constraintTop_toBottomOf="@id/errorPersonalImage" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txt11"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_text_view"
+                        android:paddingTop="10dp"
+                        android:text="صورة البطاقة الشخصية"
+                        android:textAlignment="center"
+                        android:textSize="13sp"
+                        app:layout_constraintDimensionRatio="1:.13"
+                        app:layout_constraintEnd_toEndOf="@id/imge1"
+                        app:layout_constraintStart_toStartOf="@id/imge1"
+                        app:layout_constraintTop_toBottomOf="@id/imge1" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_text_view"
+                        android:paddingTop="12dp"
+                        android:text="@string/personal_image"
+                        android:textAlignment="center"
+                        android:textSize="13sp"
+                        android:onClick="@{v -> viewModel.onClick()}"
+                        app:layout_constraintDimensionRatio="1:.13"
+                        app:layout_constraintEnd_toEndOf="@id/imge1"
+                        app:layout_constraintStart_toStartOf="@id/imge1"
+                        app:layout_constraintTop_toBottomOf="@id/imge1" />
+                    <TextView
+                        android:id="@+id/errorPersonalImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@+id/txt11"
+                        app:layout_constraintTop_toBottomOf="@+id/txt11"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="@{viewModel.viableErrorPersonalImage}"
+                        android:text="@string/please_choose_personal_image"
+                        android:textColor="@color/colorRed"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txt22"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_text_view"
+                        android:onClick="@{v -> viewModel.onClickPersonalDraive()}"
+                        android:paddingTop="12dp"
+                        android:text="@string/driver_licenses"
+                        android:textAlignment="center"
+                        android:textSize="13sp"
+                        app:layout_constraintDimensionRatio="1:.13"
+                        app:layout_constraintEnd_toEndOf="@id/imge22"
+                        app:layout_constraintStart_toStartOf="@id/imge22"
+                        app:layout_constraintTop_toBottomOf="@id/imge22" />
+                    <TextView
+                        android:id="@+id/errorDriverImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@+id/txt11"
+                        app:layout_constraintTop_toBottomOf="@+id/txt22"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="@{viewModel.viableErrorDriverImage}"
+                        android:text="@string/please_choose_driver_image"
+                        android:textColor="@color/colorRed"/>
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        app:layout_constraintEnd_toEndOf="@id/imge1"
+                        app:layout_constraintStart_toStartOf="@id/imge1"
+                        app:layout_constraintTop_toBottomOf="@id/txt22" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/materialButton"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="12dp"
+                        android:onClick="@{v -> viewModel.onClickButton()}"
+                        android:text="@string/save_modifications"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/errorDriverImage"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

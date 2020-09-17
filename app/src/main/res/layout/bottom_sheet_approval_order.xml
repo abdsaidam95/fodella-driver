@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.bottomSheets.approvalOrder.ApprovalOrderViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_sheet_shape"
+            app:bottomSheetState="@{viewModel.bottomSheetState}"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            tools:context=".bottomSheets.approvalOrder.ApprovalOrderBottomSheet">
+
+            <ImageButton
+                android:id="@+id/close_bt"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{v -> viewModel.onClickClose()}"
+                android:scaleType="centerInside"
+                android:tint="@color/colorDarkGray"
+                android:src="@drawable/ic_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imge"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_checked"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.28"
+                app:roundedCornerRadius="2dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/approval_request"
+                android:textColor="@color/colorRed"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imge" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/delevary_price"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/priceTextInput"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="16dp"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                app:boxCornerRadiusBottomEnd="10dp"-->
+<!--                app:boxCornerRadiusBottomStart="10dp"-->
+<!--                app:boxCornerRadiusTopEnd="10dp"-->
+<!--                app:boxCornerRadiusTopStart="10dp"-->
+<!--                app:boxStrokeColor="@color/color_input"-->
+<!--                app:boxStrokeErrorColor="@color/colorRed"-->
+<!--                app:errorEnabled="true"-->
+<!--                app:errorText="@{viewModel.priceError}"-->
+<!--                app:errorTextColor="@color/colorRed"-->
+<!--                app:hintAnimationEnabled="false"-->
+<!--                app:hintEnabled="false"-->
+<!--                android:hint="@string/please_enter_delivery_price"-->
+<!--                android:textColorHint="@color/colorBlack54"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/materialButton"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView6">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:inputType="numberDecimal"-->
+<!--                    android:text="@={viewModel.deliveryPrice}"-->
+<!--                    android:textAlignment="viewStart"-->
+<!--                    android:textColor="@color/colorRed"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:textChange="@{viewModel.priceTextChange}" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/priceTextInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/please_enter_delivery_price"
+                android:textColorHint="@color/colorBlack54"
+                app:boxStrokeErrorColor="@color/colorRed"
+                app:boxStrokeWidth="1dp"
+                app:errorTextColor="@color/colorRed"
+                app:errorIconTint="@color/colorRed"
+                app:errorText="@{viewModel.deliveryPriceError}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:text="@={viewModel.deliveryPrice}"
+                    android:textAlignment="viewStart"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/colorRed"
+                android:onClick="@{v -> viewModel.makePriceApprovalRequest()}"
+                android:text="@string/acceptable"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="6dp"
+                app:layout_constraintEnd_toEndOf="@+id/priceTextInput"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toBottomOf="@+id/priceTextInput"
+                app:layout_constraintBottom_toTopOf="@+id/space"
+                app:layout_constraintStart_toStartOf="@+id/priceTextInput" />
+
+            <Space
+                android:id="@+id/space"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

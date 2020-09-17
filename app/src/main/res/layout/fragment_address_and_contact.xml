@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.orderDetails.fragments.addressFragment.AddressAndContactViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/providerCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/card_address_shape"
+                    android:padding="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/provider_data_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:gravity="center"
+                            android:padding="6dp"
+                            android:text="@string/provider_data"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/img3"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="4dp"
+                            android:contentDescription="@string/app_name"
+                            android:elevation="6dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_place_24"
+                            app:layout_constraintBottom_toBottomOf="@id/fieldViewAddress"
+                            app:layout_constraintEnd_toEndOf="@+id/fieldViewAddress"
+                            app:layout_constraintTop_toTopOf="@+id/fieldViewAddress"
+                            app:tint="@color/colorBlack54" />
+
+
+                        <com.foodella.driver.features.orderDetails.FieldView
+                            android:id="@+id/fieldViewName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            app:fv_txt_label="@string/Name"
+                            app:label="@{viewModel.providerNameLabel}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/provider_data_tv"
+                            app:text="@{viewModel.providerName}"
+                            tools:fv_txt_value="محمد أحمد محمود" />
+
+                        <com.foodella.driver.features.orderDetails.FieldView
+                            android:id="@+id/fieldViewCity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            app:fv_txt_label="@string/city"
+                            app:label="@{viewModel.providerCityLabel}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fieldViewName"
+                            app:text="@{viewModel.providerCity}"
+                            tools:fv_txt_value="  الرياض" />
+
+
+                        <com.foodella.driver.features.orderDetails.FieldView
+                            android:id="@+id/fieldViewAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:padding="10dp"
+                            app:fv_txt_label="@string/address"
+                            app:label="@{viewModel.providerAddressLabel}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fieldViewCity"
+                            app:text="@{viewModel.providerAddress}"
+                            tools:fv_txt_value="  الرياض - شارع الملك عبد العزيز" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/customerCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/card_address_shape"
+                    android:padding="8dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/providerCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/providerDataTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:gravity="center"
+                            android:padding="6dp"
+                            android:text="@string/customer_data"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.foodella.driver.features.orderDetails.FieldView
+                            android:id="@+id/fieldViewCustomerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            app:fv_txt_label="@string/Name"
+                            app:label="@{viewModel.customerNameLabel}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/providerDataTv"
+                            app:text="@{viewModel.customerName}"
+                            tools:fv_txt_value="محمد أحمد محمود" />
+
+                        <com.foodella.driver.features.orderDetails.FieldView
+                            android:id="@+id/fieldViewCustomerCity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            app:fv_txt_label="@string/city"
+                            app:label="@{viewModel.customerCityLabel}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fieldViewCustomerName"
+                            app:text="@{viewModel.customerCity}"
+                            tools:fv_txt_value="  الرياض" />
+
+                        <com.foodella.driver.features.orderDetails.FieldView
+                            android:id="@+id/fieldViewCustomerAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:padding="10dp"
+                            app:fv_txt_label="@string/address"
+                            app:label="@{viewModel.customerAddressLabel}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fieldViewCustomerCity"
+                            app:text="@{viewModel.customerAddress}"
+                            tools:fv_txt_value="  الرياض - شارع الملك عبد العزيز" />
+
+                        <ImageView
+                            android:id="@+id/img"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="4dp"
+                            android:contentDescription="@string/app_name"
+                            android:elevation="6dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_place_24"
+                            app:layout_constraintBottom_toBottomOf="@id/fieldViewCustomerAddress"
+                            app:layout_constraintEnd_toEndOf="@+id/fieldViewCustomerAddress"
+                            app:layout_constraintTop_toTopOf="@+id/fieldViewCustomerAddress"
+                            app:tint="@color/colorBlack54" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mapCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/card_address_shape"
+                    android:padding="8dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/customerCardView">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginHorizontal="14dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/card_address_shape"
+                            android:padding="10dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="4dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/distance"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:gravity="start|center_vertical"
+                                    android:padding="4dp"
+                                    android:text="@string/the_distance_of_shortest_route"
+                                    android:textSize="14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/distanceValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:text="@{viewModel.shortestDistance}"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/distance"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:text="14.5 km" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <ImageView
+                            android:id="@+id/mapImg"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:contentDescription="@string/app_name"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/placeholder" />
+
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/buttonsCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/card_address_shape"
+                    android:padding="8dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mapCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/acceptBtn"
+                            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="52dp"
+                            android:layout_marginVertical="14dp"
+                            android:layout_marginStart="14dp"
+                            android:gravity="center"
+                            android:onClick="@{v -> viewModel.onClickAccept()}"
+                            android:text="@string/accept"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintCircleRadius="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/rejectBtn"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/rejectBtn"
+                            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="52dp"
+                            android:layout_marginVertical="14dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="14dp"
+                            android:backgroundTint="@color/colorMediumGray"
+                            android:gravity="center"
+                            android:onClick="@{v -> viewModel.onClickReject()}"
+                            android:text="@string/reject"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintCircleRadius="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/acceptBtn"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

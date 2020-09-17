@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.paymentMethods.adapter.PaymentMethodItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{v -> viewModel.onClickItem()}">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/paymentMethodImg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="6dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_close"
+                    app:actualImageScaleType="fitCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:loadImage="@{viewModel.paymentImage}"
+                    app:roundedCornerRadius="2dp" />
+
+                <TextView
+                    android:id="@+id/paymentMethodName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="12dp"
+                    android:gravity="start|center_vertical"
+                    android:padding="2dp"
+                    android:text="@{viewModel.paymentName}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/paymentMethodImg"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="فيزا كارد" />
+
+                <TextView
+                    android:id="@+id/paymentMethodNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@{viewModel.paymentNumber}"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/paymentMethodName"
+                    app:layout_constraintTop_toBottomOf="@+id/paymentMethodName"
+                    tools:text="**** **** **** **** 4564" />
+
+                <ImageView
+                    android:id="@+id/paymentMethodRadioButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@{viewModel.icon}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/ic_group_bottom_cheaked" />
+
+                <TextView
+                    android:id="@+id/paymentMethodDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{viewModel.paymentDate}"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/paymentMethodName"
+                    app:layout_constraintTop_toBottomOf="@+id/paymentMethodNo"
+                    tools:text="05.2020" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

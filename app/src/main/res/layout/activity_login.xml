@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.login.LoginViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="10dp"
+        tools:context=".features.login.LoginActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp">
+
+            <TextView
+                android:id="@+id/login_welcome_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/bold"
+                android:includeFontPadding="false"
+                android:text="@string/welcome"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/login_enter_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/create_account_mobile_hint"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_welcome_tv" />
+
+            <TextView
+                android:id="@+id/login_login_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:gravity="center"
+                android:text="@string/login"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/constraint_phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_enter_tv"
+                app:layout_constraintVertical_bias="0.2"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_phone"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/login_phone_shape"
+                app:layout_constraintBottom_toTopOf="@+id/textViewMobileError"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_login_tv">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/flag_phone_img"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="8dp"
+                    app:actualImageResource="@drawable/saudi_arabia_flag"
+                    app:actualImageScaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:loadImage="@{viewModel.countryFlag}"
+                    app:roundedCornerRadius="2dp" />
+
+                <TextView
+                    android:id="@+id/login_phone_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:drawableEnd="@drawable/ic_expand_more_24"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{v -> viewModel.onClickPhone()}"
+                    android:padding="3dp"
+                    android:text="@{viewModel.countryCode}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/flag_phone_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/login_phone_tv"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/login_phone_text_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:padding="12dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorPrimary"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/white"
+                    app:boxStrokeWidth="0dp"
+                    app:errorEnabled="true"
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/login_phone_tv"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="cupcake">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/login_phone_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center_vertical"
+                        android:hint="000 000 000"
+                        android:inputType="phone"
+                        android:padding="6dp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@={viewModel.phone}"
+                        android:textAlignment="viewStart"
+                        android:textSize="14sp"
+                        app:textChange="@{viewModel.phoneTextChange}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textViewMobileError"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                android:text="@{viewModel.phoneError}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:visibility="@{viewModel.phoneError != 0 ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toTopOf="@+id/login_password_text_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_phone"
+                tools:text="@string/forget_password" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_password_text_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeColor="@color/color_input"
+                app:boxStrokeErrorColor="@color/colorRed"
+                app:errorEnabled="true"
+                app:errorText="@{viewModel.passwordError}"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                app:layout_constraintBottom_toTopOf="@+id/login_forget_password_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMobileError"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/add_password"
+                    android:inputType="textPassword"
+                    android:text="@={viewModel.password}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorBlack54"
+                    android:textSize="14sp"
+                    app:textChange="@{viewModel.passwordTextChange}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/login_forget_password_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:onClick="@{v -> viewModel.onClickForgetPassword()}"
+                android:padding="4dp"
+                android:text="@string/forget_password"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toTopOf="@+id/loginBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_password_text_input" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginBtn"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:onClick="@{v -> viewModel.onClickLogin()}"
+                android:text="@string/enter"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintCircleRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_forget_password_tv" />
+
+            <TextView
+                android:id="@+id/join_us_now_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/join_us_now"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/login_new_driver_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginBtn"
+                app:layout_constraintVertical_bias="0.25"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/login_new_driver_tv"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{v -> viewModel.onClickNewDriver()}"
+                android:text="@string/new_driver"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_driver"
+                app:iconGravity="textStart"
+                app:iconPadding="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/login_new_restaurant_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/join_us_now_tv" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/login_new_restaurant_tv"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{v -> viewModel.onClickNewRestaurant()}"
+                android:text="@string/new_restaurant"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_restaurant"
+                app:iconGravity="textStart"
+                app:iconPadding="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/login_new_driver_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/login_new_driver_tv"
+                app:layout_constraintTop_toTopOf="@+id/login_new_driver_tv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

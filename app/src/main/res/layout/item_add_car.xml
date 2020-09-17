@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.features.main.cars.adapter.VehicleItemViewModel" />
+
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/imge1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/shape_imge_view"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintDimensionRatio="1:0.45"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImage="@{viewModel.idcardImge}"
+                app:roundBottomLeft="false"
+                app:roundBottomRight="false" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/imge1"
+                app:layout_constraintStart_toStartOf="@+id/imge1"
+                app:layout_constraintTop_toBottomOf="@+id/imge1">
+
+                <TextView
+                    android:id="@+id/carName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@{viewModel.vehicleName}"
+                    android:textColor="@color/colorRed"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/constraintLayout"
+                    tools:text="شيفروليه اوكتافيا سنتافيه" />
+
+                <TextView
+                    android:id="@+id/numberCar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:drawablePadding="10dp"
+                    android:text="@string/numberCar"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/ic_brightness_1_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carName" />
+
+                <TextView
+                    android:id="@+id/carModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="10dp"
+                    android:drawablePadding="10dp"
+                    android:text="@string/vehiclemodel"
+                    android:textSize="15sp"
+                    app:drawableStartCompat="@drawable/ic_brightness_1_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/numberCar" />
+
+                <TextView
+                    android:id="@+id/carStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="10dp"
+                    android:drawablePadding="10dp"
+                    android:text="@string/statuses"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/ic_brightness_1_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carModel" />
+
+                <TextView
+                    android:id="@+id/plateNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@{viewModel.vehicleNumber}"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/numberCar"
+                    app:layout_constraintTop_toTopOf="@+id/numberCar"
+                    tools:text="1230456789" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.dateOfBuild}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/plateNumber"
+                    app:layout_constraintStart_toStartOf="@+id/plateNumber"
+                    app:layout_constraintTop_toTopOf="@+id/carModel"
+                    tools:text="1230456789" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.status}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/plateNumber"
+                    app:layout_constraintStart_toStartOf="@+id/plateNumber"
+                    app:layout_constraintTop_toTopOf="@+id/carStatus"
+                    tools:text="1230456789" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

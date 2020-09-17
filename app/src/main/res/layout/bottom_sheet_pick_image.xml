@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.foodella.driver.bottomSheets.pickImage.PickImageViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_sheet_shape"
+            app:bottomSheetState="@{viewModel.bottomSheetState}"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            tools:context=".bottomSheets.pickImage.BottomSheetPickImageBinding">
+
+            <ImageButton
+                android:id="@+id/close_bt"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerInside"
+                android:tint="@color/colorDarkGray"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_close"
+                android:onClick="@{v -> viewModel.onClickDismissDialog()}"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/choose_photo"
+                android:textColor="@color/colorRed"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/ef_white"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{v -> viewModel.onClickGallery()}"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_gallery"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/Gallery"
+                android:textStyle="bold"
+                android:textColor="@color/colorRed"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/imageButton"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+            <ImageButton
+                android:id="@+id/image_button_camera"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/ef_white"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{v -> viewModel.onClickCamera()}"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_camera"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="@id/textView2"
+                app:layout_constraintTop_toTopOf="@+id/imageButton"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/Camera"
+                android:textStyle="bold"
+                android:textColor="@color/colorRed"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/image_button_camera"
+                app:layout_constraintTop_toBottomOf="@+id/image_button_camera" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
